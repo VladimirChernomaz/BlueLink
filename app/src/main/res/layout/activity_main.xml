@@ -14,13 +14,31 @@
         android:textColor="@color/text_dark"
         android:paddingBottom="8dp" />
 
-    <Button
-        android:id="@+id/buttonScan"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/scan"
-        android:backgroundTint="@color/blue_primary"
-        android:textColor="@color/text_on_blue" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonScan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/scan"
+            android:backgroundTint="@color/blue_primary"
+            android:textColor="@color/text_on_blue" />
+
+        <Button
+            android:id="@+id/buttonClear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="@string/clear"
+            android:backgroundTint="#757575"
+            android:textColor="@color/text_on_blue" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDevices"
