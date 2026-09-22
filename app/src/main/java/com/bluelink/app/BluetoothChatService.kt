@@ -149,7 +149,7 @@ object BluetoothChatService {
     }
 
     // ---- Client side: we are the one initiating the connection ----
-    private inner class ConnectThread(private val device: BluetoothDevice) : Thread() {
+        private class ConnectThread(private val device: BluetoothDevice) : Thread() {
         private var socket: BluetoothSocket? = null
 
         @SuppressLint("MissingPermission")
