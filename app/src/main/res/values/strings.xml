@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BlueLink</string>
+    <string name="scan">🔍 Найти устройства</string>
+    <string name="scanning">⏳ Идёт поиск…</string>
+    <string name="status_ready">Готово к подключению</string>
+    <string name="unknown_device">Неизвестное устройство</string>
+    <string name="no_bluetooth">На этом устройстве нет Bluetooth</string>
+    <string name="permissions_required">Нужны разрешения для работы с Bluetooth</string>
+    <string name="connecting_to">Подключение к %1$s…</string>
+    <string name="connection_failed">Не удалось подключиться</string>
+    <string name="disconnected">Соединение разорвано</string>
+    <string name="incoming_title">📩 Запрос на связь</string>
+    <string name="incoming_message">%1$s хочет начать чат. Принять?</string>
+    <string name="hint_message">Сообщение…</string>
+    <string name="send">➤</string>
+    <string name="disconnect">🔌</string>
+</resources>
