@@ -78,6 +78,7 @@ class MainActivity : AppCompatActivity(), BluetoothChatService.Listener {
         binding.recyclerDevices.adapter = adapter
 
         binding.buttonScan.setOnClickListener { toggleDiscovery() }
+        binding.buttonClear.setOnClickListener { clearList() }
 
         val filter = IntentFilter().apply {
             addAction(BluetoothDevice.ACTION_FOUND)
@@ -163,6 +164,12 @@ class MainActivity : AppCompatActivity(), BluetoothChatService.Listener {
 
     private fun refreshList() {
         adapter.submit(foundDevices.values.toList())
+    }
+
+    private fun clearList() {
+        foundDevices.clear()
+        refreshList()
+        refreshPairedDevices()
     }
 
     @SuppressLint("MissingPermission")
