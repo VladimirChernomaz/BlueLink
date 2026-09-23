@@ -14,6 +14,7 @@
     <string name="connecting_to">Подключение к %1$s…</string>
     <string name="connection_failed">Не удалось подключиться</string>
     <string name="disconnected">Соединение разорвано</string>
+    <string name="send_failed">Нет активного соединения — сообщение не отправлено</string>
     <string name="incoming_title">📩 Запрос на связь</string>
     <string name="incoming_message">%1$s хочет начать чат. Принять?</string>
     <string name="hint_message">Сообщение…</string>
