@@ -34,6 +34,13 @@ class MainActivity : AppCompatActivity(), BluetoothChatService.Listener {
             refreshPairedDevices()
         }
 
+    private val discoverableLauncher =
+        registerForActivityResult(androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode != android.app.Activity.RESULT_CANCELED) {
+                android.widget.Toast.makeText(this, getString(R.string.now_visible), android.widget.Toast.LENGTH_SHORT).show()
+            }
+        }
+
     private val permissionLauncher =
         registerForActivityResult(androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions()) { results ->
             if (results.values.all { it }) {
@@ -79,6 +86,7 @@ class MainActivity : AppCompatActivity(), BluetoothChatService.Listener {
 
         binding.buttonScan.setOnClickListener { toggleDiscovery() }
         binding.buttonClear.setOnClickListener { clearList() }
+        binding.buttonDiscoverable.setOnClickListener { requestDiscoverable() }
 
         val filter = IntentFilter().apply {
             addAction(BluetoothDevice.ACTION_FOUND)
@@ -194,6 +202,17 @@ class MainActivity : AppCompatActivity(), BluetoothChatService.Listener {
         bluetoothAdapter?.cancelDiscovery()
         binding.textStatus.text = getString(R.string.connecting_to, item.name)
         BluetoothChatService.connectTo(item.device)
+    }
+
+    private fun requestDiscoverable() {
+        if (!hasAllPermissions()) {
+            ensurePermissions()
+            return
+        }
+        val intent = Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE).apply {
+            putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 120)
+        }
+        discoverableLauncher.launch(intent)
     }
 
     // ---------- BluetoothChatService.Listener ----------
