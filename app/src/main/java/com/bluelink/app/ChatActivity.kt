@@ -36,10 +36,14 @@ class ChatActivity : AppCompatActivity(), BluetoothChatService.Listener {
         }
     }
 
-    private fun sendCurrentText() {
+        private fun sendCurrentText() {
         val text = binding.editMessage.text?.toString()?.trim().orEmpty()
         if (text.isEmpty()) return
-        BluetoothChatService.sendMessage(text)
+        val ok = BluetoothChatService.sendMessage(text)
+        if (!ok) {
+            android.widget.Toast.makeText(this, getString(R.string.send_failed), android.widget.Toast.LENGTH_LONG).show()
+            return
+        }
         adapter.add(ChatMessage(text, isMine = true))
         binding.recyclerMessages.scrollToPosition(adapter.itemCount - 1)
         binding.editMessage.text?.clear()
