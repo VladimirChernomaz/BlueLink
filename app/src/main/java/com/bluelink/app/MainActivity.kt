@@ -242,19 +242,24 @@ class MainActivity : AppCompatActivity(), BluetoothChatService.Listener {
 
     // ---------- BluetoothChatService.Listener ----------
 
-    @SuppressLint("MissingPermission")
+       @SuppressLint("MissingPermission")
     override fun onIncomingRequest(device: BluetoothDevice) {
         val name = device.name ?: device.address
+        android.widget.Toast.makeText(this, "🔔 Входящий запрос: $name", android.widget.Toast.LENGTH_SHORT).show()
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.incoming_title))
             .setMessage(getString(R.string.incoming_message, name))
-            .setPositiveButton("✅") { _, _ -> BluetoothChatService.acceptIncoming() }
+            .setPositiveButton("✅") { _, _ ->
+                android.widget.Toast.makeText(this, "✅ Принимаю…", android.widget.Toast.LENGTH_SHORT).show()
+                BluetoothChatService.acceptIncoming()
+            }
             .setNegativeButton("❌") { _, _ -> BluetoothChatService.rejectIncoming() }
             .setCancelable(false)
             .show()
     }
 
     override fun onConnected(deviceName: String) {
+        android.widget.Toast.makeText(this, "🔗 onConnected: $deviceName", android.widget.Toast.LENGTH_SHORT).show()
         openChatScreen()
     }
 
