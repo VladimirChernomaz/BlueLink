@@ -17,6 +17,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <Button
@@ -39,6 +40,15 @@
             android:textColor="@color/text_on_blue" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonDiscoverable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/discoverable"
+        android:backgroundTint="#2E7D32"
+        android:textColor="@color/text_on_blue" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDevices"
