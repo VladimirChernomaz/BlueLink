@@ -4,6 +4,8 @@
     <string name="scan">🔍 Найти устройства</string>
     <string name="scanning">⏳ Идёт поиск…</string>
     <string name="clear">🗑 Очистить</string>
+    <string name="discoverable">📡 Быть видимым 2 мин</string>
+    <string name="now_visible">Ваш телефон виден другим 2 минуты</string>
     <string name="status_ready">Готово к подключению</string>
     <string name="unknown_device">Неизвестное устройство</string>
     <string name="no_bluetooth">На этом устройстве нет Bluetooth</string>
