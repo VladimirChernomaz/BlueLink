@@ -28,7 +28,7 @@ object BluetoothChatService {
 
     private var acceptThread: AcceptThread? = null
     private var connectThread: ConnectThread? = null
-    private var connectedThread: ConnectedThread? = null
+    @Volatile private var connectedThread: ConnectedThread? = null
 
     @Volatile var isConnected: Boolean = false
         private set
@@ -63,6 +63,7 @@ object BluetoothChatService {
 
     @SuppressLint("MissingPermission")
     fun connectTo(device: BluetoothDevice) {
+        if (isConnected) return
         connectThread?.cancel()
         connectThread = ConnectThread(device).also { it.start() }
     }
@@ -83,8 +84,10 @@ object BluetoothChatService {
         pendingIncomingSocket = null
     }
 
-    fun sendMessage(text: String) {
-        connectedThread?.write(text)
+    fun sendMessage(text: String): Boolean {
+        val thread = connectedThread ?: return false
+        thread.write(text)
+        return true
     }
 
     fun disconnect() {
@@ -133,6 +136,15 @@ object BluetoothChatService {
                     return
                 }
 
+                if (isConnected) {
+                    // Already busy with another chat - politely refuse extra incoming sockets.
+                    try {
+                        socket.close()
+                    } catch (_: IOException) {
+                    }
+                    continue
+                }
+
                 // Ask the current screen to show an accept/reject prompt.
                 pendingIncomingSocket = socket
                 val device = socket.remoteDevice
@@ -149,7 +161,7 @@ object BluetoothChatService {
     }
 
     // ---- Client side: we are the one initiating the connection ----
-        private class ConnectThread(private val device: BluetoothDevice) : Thread() {
+    private class ConnectThread(private val device: BluetoothDevice) : Thread() {
         private var socket: BluetoothSocket? = null
 
         @SuppressLint("MissingPermission")
