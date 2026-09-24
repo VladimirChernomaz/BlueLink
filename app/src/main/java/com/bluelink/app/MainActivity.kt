@@ -94,8 +94,10 @@ class MainActivity : AppCompatActivity(), BluetoothChatService.Listener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+               binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        BluetoothChatService.init(applicationContext)
 
         adapter = DeviceAdapter { item -> onDeviceClicked(item) }
         binding.recyclerDevices.layoutManager = LinearLayoutManager(this)
