@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="blue_primary">#1565C0</color>
-    <color name="blue_dark">#0D47A1</color>
-    <color name="accent">#29B6F6</color>
-    <color name="bubble_mine">#1565C0</color>
+    <color name="blue_primary">#2E7D32</color>
+    <color name="blue_dark">#1B5E20</color>
+    <color name="accent">#66BB6A</color>
+    <color name="bubble_mine">#2E7D32</color>
     <color name="bubble_theirs">#E0E0E0</color>
     <color name="text_on_blue">#FFFFFF</color>
     <color name="text_dark">#212121</color>
