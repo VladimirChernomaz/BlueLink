@@ -19,6 +19,12 @@ import java.util.UUID
  */
 object BluetoothChatService {
 
+    private lateinit var appContext: android.content.Context
+
+    fun init(context: android.content.Context) {
+        appContext = context.applicationContext
+    }
+
     // Custom UUID identifying this app's chat channel.
     private val APP_UUID: UUID = UUID.fromString("27b7d1da-08c7-4505-a6d1-2459987e5e2d")
     private const val APP_NAME = "BlueLink"
@@ -214,13 +220,20 @@ object BluetoothChatService {
         override fun run() {
             val buffer = ByteArray(4096)
             while (true) {
+                var failureReason = "EOF"
                 val bytesRead = try {
                     input?.read(buffer) ?: -1
-                } catch (_: IOException) {
+                } catch (e: IOException) {
+                    failureReason = e.message ?: e.javaClass.simpleName
                     -1
                 }
                 if (bytesRead <= 0) {
                     handler.post {
+                        android.widget.Toast.makeText(
+                            appContext,
+                            "🔴 Разрыв чтения: $failureReason",
+                            android.widget.Toast.LENGTH_LONG
+                        ).show()
                         isConnected = false
                         connectedDeviceName = null
                         listener?.onDisconnected()
