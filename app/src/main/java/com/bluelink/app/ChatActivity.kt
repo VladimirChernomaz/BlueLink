@@ -12,6 +12,7 @@ class ChatActivity : AppCompatActivity(), BluetoothChatService.Listener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        android.widget.Toast.makeText(this, "🟢 ChatActivity.onCreate", android.widget.Toast.LENGTH_SHORT).show()
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -31,12 +32,13 @@ class ChatActivity : AppCompatActivity(), BluetoothChatService.Listener {
     override fun onResume() {
         super.onResume()
         BluetoothChatService.listener = this
+        android.widget.Toast.makeText(this, "🟡 ChatActivity.onResume, isConnected=${BluetoothChatService.isConnected}", android.widget.Toast.LENGTH_SHORT).show()
         if (!BluetoothChatService.isConnected) {
             finish()
         }
     }
 
-        private fun sendCurrentText() {
+    private fun sendCurrentText() {
         val text = binding.editMessage.text?.toString()?.trim().orEmpty()
         if (text.isEmpty()) return
         val ok = BluetoothChatService.sendMessage(text)
