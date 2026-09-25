@@ -222,20 +222,13 @@ object BluetoothChatService {
         override fun run() {
             val buffer = ByteArray(4096)
             while (true) {
-                var failureReason = "EOF"
                 val bytesRead = try {
                     input?.read(buffer) ?: -1
-                } catch (e: IOException) {
-                    failureReason = e.message ?: e.javaClass.simpleName
+                } catch (_: IOException) {
                     -1
                 }
                 if (bytesRead <= 0) {
                     handler.post {
-                        android.widget.Toast.makeText(
-                            appContext,
-                            "🔴 Разрыв чтения: $failureReason",
-                            android.widget.Toast.LENGTH_LONG
-                        ).show()
                         isConnected = false
                         connectedDeviceName = null
                         listener?.onDisconnected()
