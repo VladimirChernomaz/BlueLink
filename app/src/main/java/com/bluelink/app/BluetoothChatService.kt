@@ -105,7 +105,9 @@ object BluetoothChatService {
 
     @SuppressLint("MissingPermission")
     private fun startConnected(socket: BluetoothSocket) {
-        connectThread?.cancel()
+        // Note: do NOT call connectThread?.cancel() here - when called from
+        // within ConnectThread itself, that would close the very socket we're
+        // about to start using. Just drop the reference.
         connectThread = null
 
         connectedThread?.cancel()
