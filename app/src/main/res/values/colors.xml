@@ -8,4 +8,9 @@
     <color name="text_on_blue">#FFFFFF</color>
     <color name="text_dark">#212121</color>
     <color name="background">#F5F7FA</color>
+    <color name="orange">#F57C00</color>
+    <color name="orange_dark">#E65100</color>
+    <color name="card_translucent">#E6FFFFFF</color>
+    <color name="gradient_start">#C8E6C9</color>
+    <color name="gradient_end">#F1F8E9</color>
 </resources>
