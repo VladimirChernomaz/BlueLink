@@ -12,7 +12,9 @@
         android:text="@string/status_ready"
         android:textSize="14sp"
         android:textColor="@color/text_dark"
-        android:paddingBottom="8dp" />
+        android:background="@drawable/bg_card"
+        android:padding="14dp"
+        android:layout_marginBottom="12dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,12 +33,14 @@
 
         <Button
             android:id="@+id/buttonClear"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="8dp"
+            android:minWidth="0dp"
+            android:paddingHorizontal="16dp"
             android:text="@string/clear"
-            android:backgroundTint="#757575"
+            android:textSize="18sp"
+            android:backgroundTint="@color/orange"
             android:textColor="@color/text_on_blue" />
 
     </LinearLayout>
@@ -45,9 +49,9 @@
         android:id="@+id/buttonDiscoverable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:text="@string/discoverable"
-        android:backgroundTint="#2E7D32"
+        android:backgroundTint="@color/blue_dark"
         android:textColor="@color/text_on_blue" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -55,7 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="14dp"
         android:clipToPadding="false" />
 
 </LinearLayout>
